@@ -1,11 +1,12 @@
-// * CREATE A METHOD TO READING GIVEN OBJECT PROPERTIES
-
 const userForReadingProperties = {
     name: "John",
     age: 32,
     greeting: ["Hello!", "Hola!", "Hallo!"],
 }
-  
+
+/**
+ * A method for reading given object properties.
+*/
 function readProperties(obj) {
   const properties = Object.keys(obj);
 
@@ -15,13 +16,17 @@ function readProperties(obj) {
 }
 
 // readProperties(userForReadingProperties);
-// EXPECTED OUTPUT : 
+
+// Expected output : 
 // John
 // 32
 // (3) ['Hello!', 'Hola!', 'Hallo!']
 
-// * CREATE A METHOD TO DELETE GIVEN OBJECT PROPERTIES
 
+
+/**
+ * A method for deleting the given object properties.
+*/
 function deleteProperties(obj, ...deletedPropertyNames) {
   const properties = Object.keys(obj);
 
@@ -47,9 +52,10 @@ const userForDeletingProperties = {
 
 // deleteProperties(userForDeletingProperties, "age", "name");
 // console.log(userForDeletingProperties);
-// EXPECTED OUTPUT : skills: (2) ['javascript', 'react']
 
-// * CREATE A METHOD FOR MAKING DEEP OBJECT COMPARASION
+// Expected output: skills: (2) ['javascript', 'react']
+
+
 
 const user1 = {
   name: "Dogukan",
@@ -99,6 +105,9 @@ const user2 = {
   },
 };
 
+/**
+ * A method for making deep object comparison.
+*/
 function areEqual(obj1, obj2) {
   if (typeof obj1 === "object" && typeof obj2 === "object") {
     const obj1props = Object.keys(obj1);
@@ -121,10 +130,10 @@ function areEqual(obj1, obj2) {
 
 
 // console.log(areEqual(user1, user2)); 
-// EXPECTED OUTPUT : true
+
+// Expected output : true
 
 
-// * CREATE A METHOD FOR MAKING DEEP AGE CALCULATOR
 
 const users = {
   user1: {
@@ -145,7 +154,10 @@ const users = {
 
 const allAges = [];
 
-function findAllAges(obj) {
+/**
+ * A method for finding all dates and calculating each one's age.
+*/
+function findAllDates(obj) {
   const keys = Object.keys(obj);
 
   if (keys.length < 1) return;
@@ -161,7 +173,7 @@ function findAllAges(obj) {
     }
 
     if (typeof obj[key] === "object" && obj[key] !== null) {
-      findAllAges(obj[key]);
+      findAllDates(obj[key]);
     }
   }
 
@@ -186,9 +198,11 @@ function extractArr(arr) {
 }
 
 // console.log(findAllAges(users)); 
-// EXPECTED OUTPUT : [2006, 2007, 2005, 1999]
 
-// * CREATE A METHOD FOR DEEP FINDING PROPERTY NAMES BY USING VALUES
+// Expected output : [2006, 2007, 2005, 1999]
+
+
+
 const userForFindingPropNames = {
   name: "dogukan",
   age: 16,
@@ -205,7 +219,10 @@ const userForFindingPropNames = {
   },
 };
 
-
+/**
+ * A deep checking method for 
+ * finding property names by using property values.
+*/
 function findPropertyKeys(obj, value) {
   if (typeof obj === "object") {
     const keys = Object.keys(obj);
@@ -224,7 +241,9 @@ function findPropertyKeys(obj, value) {
 }
 
 // findPropertyKeys(userForFindingPropNames, "html");
-// EXPECTED OUTPUT :
+
+// Expected output :
 // Parent Object :  {zing: 'zong', ding: 'dang', ping: 'html'}  Key :  ping
 // Parent Object :  (3) ['html', 'css', 'javascript']  Key :  0
+
 
