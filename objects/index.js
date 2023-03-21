@@ -15,6 +15,10 @@ function readProperties(obj) {
 }
 
 // readProperties(userForReadingProperties);
+// EXPECTED OUTPUT : 
+// John
+// 32
+// (3) ['Hello!', 'Hola!', 'Hallo!']
 
 // * CREATE A METHOD TO DELETE GIVEN OBJECT PROPERTIES
 
@@ -29,9 +33,9 @@ function deleteProperties(obj, ...deletedPropertyNames) {
   return deletedPropertyNames.filter((p) => {
     for (let key of properties) {
       if (p === key) {
-        return delete obj[key];
+        delete obj[key];
       }
-    }
+    };
   });
 }
 
@@ -41,10 +45,9 @@ const userForDeletingProperties = {
   skills : ["javascript", "react"]
 };
 
-deleteProperties(userForDeletingProperties, "age", "name");
-
-// console.log(userForDeletingProperties); //skills: (2) ['javascript', 'react']
-
+// deleteProperties(userForDeletingProperties, "age", "name");
+// console.log(userForDeletingProperties);
+// EXPECTED OUTPUT : skills: (2) ['javascript', 'react']
 
 // * CREATE A METHOD FOR MAKING DEEP OBJECT COMPARASION
 
@@ -117,8 +120,8 @@ function areEqual(obj1, obj2) {
 }
 
 
-// console.log(areEqual(user1, user2)); // true
-
+// console.log(areEqual(user1, user2)); 
+// EXPECTED OUTPUT : true
 
 
 // * CREATE A METHOD FOR MAKING DEEP AGE CALCULATOR
@@ -182,4 +185,46 @@ function extractArr(arr) {
   }
 }
 
-// console.log(findAllAges(users)); // [2006, 2007, 2005, 1999]
+// console.log(findAllAges(users)); 
+// EXPECTED OUTPUT : [2006, 2007, 2005, 1999]
+
+// * CREATE A METHOD FOR DEEP FINDING PROPERTY NAMES BY USING VALUES
+const userForFindingPropNames = {
+  name: "dogukan",
+  age: 16,
+  skills: {
+    backend: {
+      zing: "zong",
+      ding: "dang",
+      ping: "html",
+    },
+
+    frontend: {
+      markup: ["html", "css", "javascript"],
+    },
+  },
+};
+
+
+function findPropertyKeys(obj, value) {
+  if (typeof obj === "object") {
+    const keys = Object.keys(obj);
+    if (keys.length < 0) return;
+
+    for (const k of keys) {
+      if (typeof obj[k] === "object") {
+        findPropertyKeys(obj[k], value);
+      }
+
+      if (obj[k] === value) {
+        console.log("Parent Object : ", obj , " Key : ", k);
+      }
+    }
+  }
+}
+
+// findPropertyKeys(userForFindingPropNames, "html");
+// EXPECTED OUTPUT :
+// Parent Object :  {zing: 'zong', ding: 'dang', ping: 'html'}  Key :  ping
+// Parent Object :  (3) ['html', 'css', 'javascript']  Key :  0
+
