@@ -1,12 +1,12 @@
 const userForReadingProperties = {
-    name: "John",
-    age: 32,
-    greeting: ["Hello!", "Hola!", "Hallo!"],
-}
+  name: "John",
+  age: 32,
+  greeting: ["Hello!", "Hola!", "Hallo!"],
+};
 
 /**
  * A method for reading given object properties.
-*/
+ */
 function readProperties(obj) {
   const properties = Object.keys(obj);
 
@@ -17,22 +17,20 @@ function readProperties(obj) {
 
 // readProperties(userForReadingProperties);
 
-// Expected output : 
+// Expected output :
 // John
 // 32
 // (3) ['Hello!', 'Hola!', 'Hallo!']
 
-
 const userForDeletingProperties = {
   name: "Dogukan",
   age: 16,
-  skills : ["javascript", "react"]
+  skills: ["javascript", "react"],
 };
-
 
 /**
  * A method for deleting the given object properties.
-*/
+ */
 function deleteProperties(obj, ...deletedPropertyNames) {
   const properties = Object.keys(obj);
 
@@ -46,16 +44,13 @@ function deleteProperties(obj, ...deletedPropertyNames) {
       if (p === key) {
         delete obj[key];
       }
-    };
+    }
   });
 }
-
 
 // deleteProperties(userForDeletingProperties, "age", "name");
 // console.log(userForDeletingProperties);
 // Expected output: skills: (2) ['javascript', 'react']
-
-
 
 const user1 = {
   name: "Dogukan",
@@ -107,7 +102,7 @@ const user2 = {
 
 /**
  * A method for making deep object comparison.
-*/
+ */
 function areEqualDeep(obj1, obj2) {
   if (typeof obj1 === "object" && typeof obj2 === "object") {
     const obj1props = Object.keys(obj1);
@@ -128,11 +123,8 @@ function areEqualDeep(obj1, obj2) {
   }
 }
 
-
-// console.log(areEqualDeep(user1, user2)); 
+// console.log(areEqualDeep(user1, user2));
 // Expected output : true
-
-
 
 const users = {
   user1: {
@@ -155,7 +147,7 @@ const allAges = [];
 
 /**
  * A method for finding all dates and calculating each one's age.
-*/
+ */
 function findAllDates(obj) {
   const keys = Object.keys(obj);
 
@@ -196,10 +188,8 @@ function extractArr(arr) {
   }
 }
 
-// console.log(findAllAges(users)); 
+// console.log(findAllAges(users));
 // Expected output : [2006, 2007, 2005, 1999]
-
-
 
 const userForFindingPropNames = {
   name: "dogukan",
@@ -218,9 +208,9 @@ const userForFindingPropNames = {
 };
 
 /**
- * A deep checking method for 
+ * A deep checking method for
  * finding property names by using property values.
-*/
+ */
 function findPropertyKeys(obj, value) {
   if (typeof obj === "object") {
     const keys = Object.keys(obj);
@@ -232,7 +222,7 @@ function findPropertyKeys(obj, value) {
       }
 
       if (obj[k] === value) {
-        console.log("Parent Object : ", obj , " Key : ", k);
+        console.log("Parent Object : ", obj, " Key : ", k);
       }
     }
   }
@@ -244,8 +234,6 @@ function findPropertyKeys(obj, value) {
 // Parent Object :  {zing: 'zong', ding: 'dang', ping: 'html'}  Key :  ping
 // Parent Object :  (3) ['html', 'css', 'javascript']  Key :  0
 
-
-
 const objForShallowCheck1 = {
   foo: "bar",
   bar: "baz",
@@ -254,29 +242,28 @@ const objForShallowCheck1 = {
 
 const objForShallowCheck2 = Object.assign({}, objForShallowCheck1);
 
-
 /**
-* Check two objects whether copied as a shallow copy or not.
-*/
+ * Check two objects whether copied as a shallow copy or not.
+ */
 function checkShallowCopy(obj1, obj2) {
-  if (typeof obj1 === "object" && typeof obj2 === "object") {
-    if (obj1 === obj2) return false;
+  if (obj1 === obj2) return false; // or false you decide
 
-    const objKeys1 = Object.keys(obj1);
-    const objKeys2 = Object.keys(obj2);
+  if (
+    typeof obj1 === "object" &&
+    typeof obj2 === "object" &&
+    obj1 !== null &&
+    obj2 !== null
+  ) {
+    const keys1 = Object.keys(obj1);
+    const keys2 = Object.keys(obj2);
 
-    if (objKeys1.length !== objKeys2.length) return false;
+    if (keys1.length !== keys2.length) return false;
 
-    return objKeys1.every((current, index) => {
-      if (current === objKeys2[index]) {
-        return obj1[current] === obj2[current];
-      }
-      return false;
-    });
+    return keys1.every(
+      (key) => Object.hasOwn(obj2, key) && obj1[key] === obj2[key]
+    );
   }
-
-  return false;
 }
 
-// console.log(checkShallowCopy(objForShallowCheck1, objForShallowCheck2)); 
+// console.log(checkShallowCopy(objForShallowCheck1, objForShallowCheck2));
 //Expected output : true
